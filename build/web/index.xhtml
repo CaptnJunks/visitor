@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+     <h:head>
+          <title>Visitor Bean Application</title>
+          <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|Ubuntu+Mono" rel="stylesheet"></link>
+          <h:outputScript>
+               var clientIP = ${mainBean.visitorIP};               
+          </h:outputScript>
+     </h:head>
+     <h:body>
+          <h:outputStylesheet library="css" name="visitorcss.css" />
+          <h:panelGroup id="outer-wrap-div" layout="block">
+               <h:panelGroup id="title-wrap-div" layout="block">
+                    <h2>James Zeigler</h2>
+                    <h3>Visitor Application</h3>
+               </h:panelGroup>
+               <h:panelGroup id="inner-wrap-div" layout="block">Hello!  This is the Visitor Bean Application.  I will exclude the definition of Bean here.
+        In simple terms this page simply logs the IP of the visitor and stores the IP in a database along with the number of
+        times that unique IP has visited and the last date in which that visit was made.  Below I have displayed your IP, and 
+        the total number of unique IP's visited to date and the grand total of page visits.
+        
+          <p>${mainBean.visitorIP}  --- your public IP address</p>
+          <p>${mainBean.checkVisitor()}  --- if 'true' the persistence was a success!</p>
+          <p>${mainBean.totalVisitors}  --- total unique visitors to date</p>
+          <p>${mainBean.totalVisits}  --- total page visits to date ( all visitors )</p>
+          <p>${mainBean.curentVisitorsVisits} --- total number of YOUR visits</p>
+               </h:panelGroup>
+          <h:panelGroup id="footer-wrap-div" layout="block">Some might ask why?  There are a number of services that provide this kind of analytic for free.
+               This is true, but the goal was not to build a new analytic engine, it was simply to use the persistence model provided
+               by the Entity Manager.  The Bean itself is a POJO, that is persisted using the EntityManager Object that itself uses a connection
+               provided by the Glassfish (Payara) container.  I get a great deal of satisfaction from this simple and trivial application.
+               It is also something I can eventually build on.  The information comes from the HttpServletRequest object ( again container managed )
+          which contains a wealth of information from the request object.  Maybe there is more I can expand on at a later date.</h:panelGroup>
+          </h:panelGroup>
+     </h:body>
+</html>
+
